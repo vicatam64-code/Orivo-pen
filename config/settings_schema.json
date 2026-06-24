@@ -1,0 +1,26 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Orivo",
+    "theme_version": "1.0.0",
+    "theme_author": "Orivo",
+    "theme_documentation_url": "https://orivo.example",
+    "theme_support_url": "https://orivo.example/support"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent (brand green)",
+        "default": "#2E7D5B"
+      }
+    ]
+  }
+]

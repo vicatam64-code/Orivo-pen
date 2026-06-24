@@ -1,0 +1,25 @@
+{%- comment -%} Cart template {%- endcomment -%}
+<div style="max-width:780px;margin:0 auto;padding:56px 22px;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#16231D;">
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:34px;margin:0 0 24px;">{{ 'cart.general.title' | t }}</h1>
+  {%- if cart.item_count > 0 -%}
+    {%- form 'cart', cart -%}
+      {%- for item in cart.items -%}
+        <div style="display:flex;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid #E3EAE6;">
+          {%- if item.image -%}<img src="{{ item.image | image_url: width: 120 }}" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:8px;">{%- endif -%}
+          <div style="flex:1;">
+            <p style="margin:0;font-weight:600;">{{ item.product.title }}</p>
+            <p style="margin:4px 0 0;color:#65736C;">{{ item.variant.title }}</p>
+          </div>
+          <p style="margin:0;font-weight:600;">{{ item.final_line_price | money }}</p>
+        </div>
+      {%- endfor -%}
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:24px;">
+        <strong style="font-size:20px;">{{ 'cart.general.subtotal' | t }}: {{ cart.total_price | money }}</strong>
+        <button type="submit" name="checkout" style="background:#2E7D5B;color:#fff;border:0;border-radius:999px;padding:15px 30px;font-size:16px;font-weight:700;cursor:pointer;">{{ 'cart.general.checkout' | t }}</button>
+      </div>
+    {%- endform -%}
+  {%- else -%}
+    <p>{{ 'cart.general.empty' | t }}</p>
+    <a href="/collections/all" style="color:#2E7D5B;font-weight:600;">{{ 'cart.general.continue_shopping' | t }}</a>
+  {%- endif -%}
+</div>

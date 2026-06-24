@@ -1,0 +1,25 @@
+{%- comment -%} Minimal product template {%- endcomment -%}
+<div style="max-width:980px;margin:0 auto;padding:56px 22px;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#16231D;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;">
+    <div>
+      {%- if product.featured_image -%}
+        <img src="{{ product.featured_image | image_url: width: 800 }}" alt="{{ product.featured_image.alt | escape }}" style="width:100%;height:auto;border-radius:14px;">
+      {%- endif -%}
+    </div>
+    <div>
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-size:34px;line-height:1.1;margin:0 0 14px;">{{ product.title }}</h1>
+      <p style="font-size:24px;font-weight:700;margin:0 0 22px;">{{ product.price | money }}</p>
+      {%- form 'product', product -%}
+        <select name="id" style="padding:12px;border:1px solid #E3EAE6;border-radius:10px;width:100%;margin-bottom:14px;">
+          {%- for variant in product.variants -%}
+            <option value="{{ variant.id }}">{{ variant.title }} — {{ variant.price | money }}</option>
+          {%- endfor -%}
+        </select>
+        <button type="submit" name="add" style="background:#2E7D5B;color:#fff;border:0;border-radius:999px;padding:15px 28px;font-size:16px;font-weight:700;width:100%;cursor:pointer;">
+          {{ 'products.product.add_to_cart' | t }}
+        </button>
+      {%- endform -%}
+      <div class="rte" style="margin-top:26px;font-size:16px;line-height:1.7;color:#3B4842;">{{ product.description }}</div>
+    </div>
+  </div>
+</div>

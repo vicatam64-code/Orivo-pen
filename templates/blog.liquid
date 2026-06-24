@@ -1,0 +1,10 @@
+{%- comment -%} Blog template {%- endcomment -%}
+<div style="max-width:780px;margin:0 auto;padding:56px 22px;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#16231D;">
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:34px;margin:0 0 28px;">{{ blog.title }}</h1>
+  {%- for article in blog.articles -%}
+    <article style="padding:20px 0;border-bottom:1px solid #E3EAE6;">
+      <a href="{{ article.url }}" style="font-size:22px;font-weight:600;color:#16231D;text-decoration:none;">{{ article.title }}</a>
+      <p style="color:#65736C;margin:8px 0 0;">{{ article.excerpt_or_content | strip_html | truncatewords: 30 }}</p>
+    </article>
+  {%- endfor -%}
+</div>

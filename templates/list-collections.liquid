@@ -1,0 +1,9 @@
+{%- comment -%} List of collections {%- endcomment -%}
+<div style="max-width:1080px;margin:0 auto;padding:56px 22px;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#16231D;">
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:34px;margin:0 0 28px;">Collections</h1>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:26px;">
+    {%- for collection in collections -%}
+      <a href="{{ collection.url }}" style="text-decoration:none;color:inherit;font-weight:600;">{{ collection.title }}</a>
+    {%- endfor -%}
+  </div>
+</div>

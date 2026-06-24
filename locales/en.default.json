@@ -1,0 +1,49 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you were looking for does not exist.",
+      "link": "Continue shopping"
+    },
+    "search": {
+      "search": "Search",
+      "placeholder": "Search",
+      "no_results": "No results found.",
+      "results_with_count": "{{ count }} results for \"{{ terms }}\""
+    },
+    "password_page": {
+      "login_form_heading": "Enter store using password",
+      "login_password_button": "Enter using password",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_error": "Wrong password!",
+      "login_form_submit": "Enter",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>",
+      "powered_by_shopify_html": "This shop will be powered by {{ shopify }}"
+    }
+  },
+  "accessibility": {
+    "skip_to_text": "Skip to content"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Your cart",
+      "empty": "Your cart is empty",
+      "checkout": "Check out",
+      "subtotal": "Subtotal",
+      "remove": "Remove",
+      "continue_shopping": "Continue shopping"
+    }
+  }
+}

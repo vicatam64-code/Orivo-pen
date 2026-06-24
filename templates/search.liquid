@@ -1,0 +1,16 @@
+{%- comment -%} Search template {%- endcomment -%}
+<div style="max-width:780px;margin:0 auto;padding:56px 22px;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#16231D;">
+  <h1 style="font-family:'Space Grotesk',sans-serif;font-size:34px;margin:0 0 22px;">{{ 'general.search.search' | t }}</h1>
+  <form action="{{ routes.search_url }}" method="get" style="margin-bottom:28px;">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" style="padding:13px;border:1px solid #E3EAE6;border-radius:10px;width:100%;">
+  </form>
+  {%- if search.performed -%}
+    {%- if search.results.size > 0 -%}
+      {%- for item in search.results -%}
+        <a href="{{ item.url }}" style="display:block;padding:12px 0;border-bottom:1px solid #E3EAE6;color:#16231D;text-decoration:none;">{{ item.title }}</a>
+      {%- endfor -%}
+    {%- else -%}
+      <p>{{ 'general.search.no_results' | t }}</p>
+    {%- endif -%}
+  {%- endif -%}
+</div>

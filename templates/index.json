@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "orivo-purifier",
+      "settings": {
+        "variant_t1": "",
+        "variant_t2": "",
+        "variant_t3": "",
+        "variant_protection": "",
+        "after_add": "drawer",
+        "show_announcement": true,
+        "show_header": true,
+        "show_footer": true,
+        "show_countdown": true,
+        "sale_hours": 5,
+        "show_viewers": true,
+        "show_lowstock": true
+      }
+    }
+  },
+  "order": ["main"]
+}
