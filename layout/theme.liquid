@@ -20,6 +20,11 @@
       <meta name="description" content="{{ page_description | escape }}">
     {%- endif -%}
 
+    {%- comment -%} Brand fonts + shared header/footer styles for all non-landing pages {%- endcomment -%}
+    {%- unless request.page_type == 'index' -%}
+      {%- render 'site-chrome-head' -%}
+    {%- endunless -%}
+
     {{ content_for_header }}
   </head>
 
@@ -28,8 +33,16 @@
       {{ "accessibility.skip_to_text" | t }}
     </a>
 
+    {%- unless request.page_type == 'index' -%}
+      {%- render 'site-header' -%}
+    {%- endunless -%}
+
     <main id="MainContent" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
+
+    {%- unless request.page_type == 'index' -%}
+      {%- render 'site-footer' -%}
+    {%- endunless -%}
   </body>
 </html>

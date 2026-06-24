@@ -1,5 +1,46 @@
-{%- comment -%} Generic page template {%- endcomment -%}
-<div class="page-width" style="max-width:780px;margin:0 auto;padding:64px 22px;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#16231D;">
+{%- comment -%} Generic page template (with contact form on the Contact page) {%- endcomment -%}
+<div class="page-width" style="max-width:780px;margin:0 auto;padding:56px 22px;font-family:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#16231D;">
   <h1 style="font-family:'Space Grotesk',sans-serif;font-size:38px;line-height:1.1;margin:0 0 22px;">{{ page.title }}</h1>
-  <div class="rte" style="font-size:17px;line-height:1.7;color:#3B4842;">{{ page.content }}</div>
+
+  {%- if page.content != blank -%}
+    <div class="rte" style="font-size:17px;line-height:1.7;color:#3B4842;">{{ page.content }}</div>
+  {%- endif -%}
+
+  {%- if page.handle == 'contact' or page.template_suffix == 'contact' -%}
+    {%- if page.content == blank -%}
+      <p style="font-size:17px;line-height:1.7;color:#3B4842;margin:0 0 8px;">Have a question about your order or the Orivo&trade; Mullein Purifier? Send us a message and we&rsquo;ll get back to you.</p>
+    {%- endif -%}
+
+    {%- assign sc_field = 'width:100%;box-sizing:border-box;padding:13px 14px;border:1px solid #E3EAE6;border-radius:10px;font:inherit;font-size:16px;color:#16231D;background:#fff;margin-top:6px;' -%}
+    {%- assign sc_label = 'display:block;font-weight:600;font-size:14px;color:#16231D;margin-top:18px;' -%}
+
+    <div style="margin-top:28px;">
+    {%- form 'contact' -%}
+      {%- if form.posted_successfully? -%}
+        <div style="background:#EAF3EE;border:1px solid #CFE3D7;color:#1F5C42;border-radius:12px;padding:16px 18px;font-size:15px;margin-bottom:20px;">
+          Thanks &mdash; your message has been sent. We&rsquo;ll be in touch shortly.
+        </div>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <div style="background:#FBEBE8;border:1px solid #F2C7BF;color:#C7402F;border-radius:12px;padding:16px 18px;font-size:15px;margin-bottom:20px;">
+          {{ form.errors | default_errors }}
+        </div>
+      {%- endif -%}
+
+      <label style="{{ sc_label }}">Name
+        <input type="text" name="contact[name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" style="{{ sc_field }}" required>
+      </label>
+      <label style="{{ sc_label }}">Email
+        <input type="email" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" style="{{ sc_field }}" required>
+      </label>
+      <label style="{{ sc_label }}">Phone (optional)
+        <input type="tel" name="contact[phone]" value="{{ form.phone }}" style="{{ sc_field }}">
+      </label>
+      <label style="{{ sc_label }}">Message
+        <textarea name="contact[body]" rows="6" style="{{ sc_field }}resize:vertical;" required>{{ form.body }}</textarea>
+      </label>
+      <button type="submit" style="margin-top:22px;background:#2E7D5B;color:#fff;border:none;border-radius:999px;padding:14px 30px;font-weight:700;font-size:15px;cursor:pointer;">Send message</button>
+    {%- endform -%}
+    </div>
+  {%- endif -%}
 </div>
