@@ -1,0 +1,36 @@
+<footer class="sc-ftr">
+  <div class="sc-wrap">
+    <div class="sc-ftr__top">
+      <a href="{{ routes.root_url }}" class="sc-logo">
+        <span class="sc-logo__mark"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-3 8-7 11z"/><path d="M12 12c2-1 3-3 3-5"/></svg></span>
+        <span>{{ section.settings.brand_text }}</span>
+      </a>
+      <nav class="sc-ftr__links">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'link' -%}
+            <a href="{{ block.settings.url | default: routes.root_url }}" {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </nav>
+    </div>
+    {%- if section.settings.disclaimer != blank -%}<p class="sc-ftr__disc">{{ section.settings.disclaimer }}</p>{%- endif -%}
+    <p class="sc-ftr__copy">{{ section.settings.copyright }}</p>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Site footer",
+  "settings": [
+    { "type": "text", "id": "brand_text", "label": "Brand name", "default": "Orivo™" },
+    { "type": "textarea", "id": "disclaimer", "label": "Disclaimer", "default": "Botanical aromatherapy product for adult use. Not a medicine or medical device. It is not a smoking-cessation medicine or a nicotine-replacement therapy, and is not guaranteed to help you stop smoking. Statements have not been evaluated by regulators and are not intended to diagnose, treat, cure or prevent any disease. Consult your doctor if you are pregnant, on medication, or managing a heart or respiratory condition. Customer survey results and testimonials are self-reported, reflect individual experiences, and are not clinical evidence." },
+    { "type": "text", "id": "copyright", "label": "Copyright line", "default": "© 2026 Orivo. All rights reserved." }
+  ],
+  "blocks": [
+    { "type": "link", "name": "Footer link", "settings": [
+      { "type": "text", "id": "label", "label": "Label", "default": "Contact" },
+      { "type": "url", "id": "url", "label": "Link" }
+    ] }
+  ],
+  "default": { "blocks": [ { "type": "link", "settings": { "label": "Contact", "url": "/pages/contact" } } ] }
+}
+{% endschema %}
